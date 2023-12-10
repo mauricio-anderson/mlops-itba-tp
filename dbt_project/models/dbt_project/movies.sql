@@ -22,4 +22,4 @@ SELECT
   "Film-Noir"::INT::BOOLEAN AS "film_noir",
   "Children's"::INT::BOOLEAN AS "childrens",
   "documentary"::INT::BOOLEAN
-FROM "raw_data"."movies"
+FROM {{ source('raw_data', 'movies') }}

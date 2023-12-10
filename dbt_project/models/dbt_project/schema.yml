@@ -9,3 +9,13 @@ models:
         description: "user id"
         tests:
           - not_null
+
+sources:
+  - name: raw_data
+    description: "machine learning raw tables"
+    database: mlops
+    schema: raw_data
+    tables:
+      - name: scores
+      - name: movies
+      - name: users
