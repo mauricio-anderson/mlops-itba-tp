@@ -1,0 +1,11 @@
+
+version: 2
+
+models:
+  - name: table_to_model
+    description: "A starter dbt model"
+    columns:
+      - name: user_id
+        description: "user id"
+        tests:
+          - not_null
