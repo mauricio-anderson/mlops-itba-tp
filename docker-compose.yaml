@@ -16,6 +16,23 @@ services:
         volumes:
             - ./docker/data/postgres:/var/lib/postgresql/data/
             - ./docker/postgresql-init:/docker-entrypoint-initdb.d
-
         ports:
           - 5433:5432
+
+    mlflow-server:
+        image: mlops-itba
+        container_name: mlflow-server
+        ports:
+            - 0.0.0.0:8887:5000
+        environment:
+            DB_URI: "postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/mlflow"
+            MLFLOW_ARTIFACT_ROOT: ${MLFLOW_ARTIFACT_ROOT}
+            MLFLOW_USERNAME: ${MLFLOW_USERNAME}
+            MLFLOW_PASSWORD: ${MLFLOW_PASSWORD}
+            TZ: UTC
+        restart: always
+        depends_on:
+            - db
+        command: "mlflow server --backend-store-uri postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/mlflow --default-artifact-root ${MLFLOW_ARTIFACT_ROOT} -h 0.0.0.0 -p 5000"
+        volumes:
+            - ./docker/data/mlruns:${MLFLOW_ARTIFACT_ROOT}
