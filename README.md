@@ -1,2 +1,2 @@
-# mlops-itba-tp
-Trabajo Practivo Curso MLOps @ ITBA
+# Trabajo Practico Final MLOps @ ITBA
+...

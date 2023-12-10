@@ -1,0 +1,21 @@
+
+version: '3'
+
+services:
+
+    db:
+        container_name: db
+        image: postgres:10.5
+        restart: always
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_DB: null
+            POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+            TZ: UTC
+        volumes:
+            - ./docker/data/postgres:/var/lib/postgresql/data/
+            - ./docker/postgresql-init:/docker-entrypoint-initdb.d
+
+        ports:
+          - 5433:5432

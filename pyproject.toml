@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "mlops-itba-tp"
+version = "0.1.0"
+description = ""
+authors = ["Mauricio Anderson <m.anderson.ricci@gmail.com>"]
+readme = "README.md"
+packages = [{include = "mlops_itba_tp"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+mlflow = "^2.9.1"
+numpy = "^1.26.2"
+pandas = "^2.1.4"
+dbt-postgres = "^1.7.3"
+dagster = "^1.5.11"
+dagster-webserver = "^1.5.11"
+
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.18.1"
+ipykernel = "^6.27.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
