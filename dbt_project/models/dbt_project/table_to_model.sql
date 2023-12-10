@@ -2,7 +2,7 @@ SELECT
     -- SCORES
    "user_id", "movie_id",  "date", "rating",
     -- USERS
-    "occupation", "active_since"
+    "occupation", "active_since",
     -- MOVIES
     "name", "release_date", "imdb_url", "war", "crime",
     "drama", "action", "comedy", "horror", "sci_fi", "fantasy",

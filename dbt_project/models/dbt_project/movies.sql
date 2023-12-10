@@ -1,7 +1,7 @@
 SELECT
   "id"::INT,
   "Name" AS "name",
-  "Release Date"::TIMESTAMP AS "release_date",
+  "Release Date"::DATE AS "release_date",
   "IMDB URL" AS "imdb_url",
   "war"::INT::BOOLEAN,
   "crime"::INT::BOOLEAN,
@@ -9,7 +9,7 @@ SELECT
   "Action"::INT::BOOLEAN AS "action",
   "comedy"::INT::BOOLEAN,
   "horror"::INT::BOOLEAN,
-  "Sci-Fi" AS "sci_fi",
+  "Sci-Fi"::INT::BOOLEAN AS "sci_fi",
   "fantasy"::INT::BOOLEAN,
   "musical"::INT::BOOLEAN,
   "mystery"::INT::BOOLEAN,
