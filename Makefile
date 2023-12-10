@@ -7,3 +7,6 @@ add-kernel:
 
 start-env:
 	docker-compose --env-file .env up
+
+start-airbyte:
+	./airbyte/run-ab-platform.sh
