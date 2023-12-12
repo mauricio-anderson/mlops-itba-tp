@@ -19,7 +19,7 @@ services:
         ports:
           - 5433:5432
 
-    mlflow-server:
+    mlflow-serverr:
         image: mlops-itba
         container_name: mlflow-server
         ports:
