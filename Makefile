@@ -10,3 +10,6 @@ start-env:
 
 start-airbyte:
 	./airbyte/run-ab-platform.sh
+
+start-dagster:
+	poetry run dagster dev
