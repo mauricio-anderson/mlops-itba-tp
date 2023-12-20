@@ -13,3 +13,9 @@ start-airbyte:
 
 start-dagster:
 	poetry run dagster dev
+
+run-black:
+	poetry run black mlops_itba_tp/*
+
+run-isort:
+	poetry run black mlops_itba_tp/*

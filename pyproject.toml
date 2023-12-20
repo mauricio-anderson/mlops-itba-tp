@@ -20,12 +20,30 @@ sqlalchemy = "^2.0.23"
 ipython = "^8.18.1"
 ipykernel = "^6.27.1"
 jupyter = "^1.0.0"
+black = "^23.12.0"
+isort = "^5.13.2"
 
 
 [tool.poetry.group.dagster.dependencies]
 dagster = "^1.5.12"
 dagster-webserver = "^1.5.12"
 dagster-mlflow = "^0.21.12"
+
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+line_length = 88
+indent = '    '
+multi_line_output = 3
+length_sort = true
+use_parentheses = true
+include_trailing_comma = true
+force_sort_within_sections = true
+known_first_party="mlops_itba_tp"
+known_third_party="numpy, mlflow"
 
 [build-system]
 requires = ["poetry-core"]
