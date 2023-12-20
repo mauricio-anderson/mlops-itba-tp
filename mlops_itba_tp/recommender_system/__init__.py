@@ -1,9 +1,12 @@
 from dagster import Definitions, load_assets_from_modules
 
-from . import assets
+from .assets import recommender_assets, core_assets
 
-all_assets = load_assets_from_modules([assets])
+# from .resources import airbyte_instance
+# from dagster_airbyte import load_assets_from_airbyte_instance
+# airbyte_assets = load_assets_from_airbyte_instance(airbyte_instance)
+
 
 defs = Definitions(
-    assets=all_assets,
+    assets=[*core_assets, *recommender_assets],
 )

@@ -4,5 +4,5 @@ from dagster import asset, Output, String, AssetIn, FreshnessPolicy, MetadataVal
 @asset()
 def hello() -> None:
     """ """
-    print("hello")
+    print("hello world")
     return None
