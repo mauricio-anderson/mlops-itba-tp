@@ -5,6 +5,9 @@ hello:
 add-kernel:
 	poetry run python -m ipykernel install --user --name=mlops-itba-tp
 
+build-image:
+	docker build -t mlops-itba .
+
 start-env:
 	docker-compose --env-file .env up
 
