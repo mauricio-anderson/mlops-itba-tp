@@ -22,3 +22,12 @@ run-black:
 
 run-isort:
 	poetry run black mlops_itba_tp/*
+
+run-pylint:
+	poetry run black mlops_itba_tp/*
+
+run-flake8:
+	poetry run flake8 mlops_itba_tp/*
+
+run-mypy:
+	poetry run mypy mlops_itba_tp/*

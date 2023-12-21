@@ -3,6 +3,7 @@ from dagster import asset, Output, String, AssetIn, FreshnessPolicy, MetadataVal
 from mlops_itba_tp.utils.data import run_query
 import pandas as pd
 
+
 @asset()
 def training_data() -> Output[pd.DataFrame]:
     """ """
