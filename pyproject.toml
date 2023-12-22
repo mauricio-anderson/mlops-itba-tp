@@ -36,6 +36,7 @@ dagster-webserver = "^1.5.12"
 dagster-mlflow = "^0.21.12"
 tensorflow = "2.14.0"
 dagster-airbyte = "^0.21.13"
+dagster-dbt = "^0.21.13"
 
 
 [tool.black]

@@ -17,5 +17,14 @@ sources:
     schema: raw_data
     tables:
       - name: scores
+        meta:
+          dagster:
+            asset_key: ["raw_scores"]
       - name: movies
+        meta:
+          dagster:
+            asset_key: ["raw_movies"]
       - name: users
+        meta:
+          dagster:
+            asset_key: ["raw_users"]
