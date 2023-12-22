@@ -1,0 +1,56 @@
+# template: https://www.getcodeflow.com/pylint-configuration.html
+
+
+[MASTER]
+jobs=1
+
+
+[MESSAGES CONTROL]
+disable=
+    # Disable conventions and refactors warnings
+    C,
+    R,
+    # Others
+    logging-fstring-interpolation,
+    fixme,
+    broad-except,
+    unspecified-encoding
+
+
+[BASIC]
+# Good variable names which should always be accepted, separated by a comma.
+good-names=i,j,k,ex,Run,_,df,n,ts,dt,fn,el,d1,d2,s3,logger,config
+
+
+[FORMAT]
+
+# Maximum number of characters on a single line.
+max-line-length=88  # as in black
+
+# Maximum number of lines in a module.
+max-module-lines=1200
+
+
+[REPORTS]
+evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)
+
+# Set the output format. Available formats are text, parseable, colorized, json
+# and msvs (visual studio). You can also give a reporter class, e.g.
+# mypackage.mymodule.MyReporterClass.
+output-format=text
+
+# Tells whether to display a full report or only the messages.
+reports=no
+
+# Activate the evaluation score.
+score=yes
+
+
+[REFACTORING]
+# Maximum number of nested blocks for function / method body
+max-nested-blocks=5
+
+
+[MISCELLANEOUS]
+# List of note tags to take in consideration, separated by a comma.
+notes=FIXME,XXX,TODO
