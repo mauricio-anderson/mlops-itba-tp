@@ -1,24 +1,28 @@
 """ """
 import os
-import numpy as np
-from sklearn.metrics import mean_squared_error
-from dagster import asset, AssetIn, Int, Float, multi_asset, AssetOut
-from dagster_mlflow import mlflow_tracking
-import pandas as pd
 from typing import Dict, Tuple
-from sklearn.model_selection import train_test_split
+
+import numpy as np
+import pandas as pd
+from keras.optimizers import Adam
 from tensorflow.keras import Model
 from matplotlib import pyplot as plt
+from dagster_mlflow import mlflow_tracking
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
+from dagster import Int, Float, AssetIn, AssetOut, asset, multi_asset
 
 from mlops_itba_tp.recommender_system.assets.recommenderer.model_helper import get_model
-from keras.optimizers import Adam
 
 mlflow = mlflow_tracking.configured(
     {
         "experiment_name": "recommender-system-I",
-        "mlflow_tracking_uri": os.environ.get("MLFLOW_TRACKING_URI", "http://127.0.0.1:8887"),
+        "mlflow_tracking_uri": os.environ.get(
+            "MLFLOW_TRACKING_URI", "http://127.0.0.1:8887"
+        ),
     }
 )
+
 
 @multi_asset(
     ins={"upstream": AssetIn("training_data")},
@@ -89,7 +93,9 @@ def split_data(
         "embeddings_dim": Int,
     },
 )
-def keras_dot_product_model(context, x_train, y_train, user_to_idx, movie_to_idx) -> Model:
+def keras_dot_product_model(
+    context, x_train, y_train, user_to_idx, movie_to_idx
+) -> Model:
     """ """
 
     mlflow = context.resources.mlflow

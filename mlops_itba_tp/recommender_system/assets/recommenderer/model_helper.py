@@ -1,6 +1,5 @@
 """ """
-from tensorflow.keras import layers
-from tensorflow.keras import Model
+from tensorflow.keras import Model, layers
 
 
 def get_model(n_movies, n_users, n_latent_factors) -> Model:

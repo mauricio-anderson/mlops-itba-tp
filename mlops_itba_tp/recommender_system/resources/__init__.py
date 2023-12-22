@@ -1,5 +1,5 @@
 """ """
-from dagster import EnvVar
+# from dagster import EnvVar
 from dagster_airbyte import AirbyteResource
 
 airbyte_instance = AirbyteResource(
