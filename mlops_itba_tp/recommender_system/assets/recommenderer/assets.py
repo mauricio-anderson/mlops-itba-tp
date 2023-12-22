@@ -16,10 +16,9 @@ from keras.optimizers import Adam
 mlflow = mlflow_tracking.configured(
     {
         "experiment_name": "recommender-system-I",
-        "mlflow_tracking_uri": os.environ["MLFLOW_TRACKING_URI"],
+        "mlflow_tracking_uri": os.environ.get("MLFLOW_TRACKING_URI", "http://127.0.0.1:8887"),
     }
 )
-
 
 @multi_asset(
     ins={"upstream": AssetIn("training_data")},
