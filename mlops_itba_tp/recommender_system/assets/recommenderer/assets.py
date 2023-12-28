@@ -146,14 +146,14 @@ def keras_dot_product_model(
     },
     name="model_data",
 )
-def log_model(context, keras_dot_product: Model) -> Dict:
+def log_model(context, keras_dot_product_model: Model) -> Dict:
     """ """
     _mlflow = context.resources.mlflow
 
     logged_model = _mlflow.tensorflow.log_model(
-        keras_dot_product,
-        "keras_dot_product",
-        registered_model_name="keras_dot_product",
+        keras_dot_product_model,
+        "keras_dot_product_model",
+        registered_model_name="keras_dot_product_model",
         input_example=[np.array([1, 2]), np.array([2, 3])],
     )
 
