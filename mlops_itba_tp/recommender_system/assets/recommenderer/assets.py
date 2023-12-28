@@ -34,6 +34,9 @@ mlflow = mlflow_tracking.configured(
 )
 def preprocess_data(context, upstream: pd.DataFrame) -> Tuple[pd.DataFrame, Dict, Dict]:
     """ """
+
+    context.log.info("Running 'preprocess_data'")
+
     training_data = upstream
 
     u_unique = training_data.user_id.unique()
@@ -67,6 +70,7 @@ def split_data(
     context, preprocessed_training_data: pd.DataFrame
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """ """
+    context.log.info("Running 'split_data'")
     test_size = 0.10
     random_state = 42
     x_train, x_test, y_train, y_test = train_test_split(
@@ -98,9 +102,9 @@ def keras_dot_product_model(
 ) -> Model:
     """ """
 
-    mlflow = context.resources.mlflow
+    _mlflow = context.resources.mlflow
 
-    mlflow.log_params(context.op_config)
+    _mlflow.log_params(context.op_config)
 
     # Model hyperparameters
     batch_size = context.op_config["batch_size"]
@@ -125,12 +129,12 @@ def keras_dot_product_model(
 
     # Log mlflow data
     for i, l in enumerate(history.history["loss"]):
-        mlflow.log_metric("mse", l, i)
+        _mlflow.log_metric("mse", l, i)
 
     fig, axs = plt.subplots(1)
     axs.plot(history.history["loss"], label="mse")
     plt.legend()
-    mlflow.log_figure(fig, "plots/loss.png")
+    _mlflow.log_figure(fig, "plots/loss.png")
 
     return model
 
@@ -142,14 +146,14 @@ def keras_dot_product_model(
     },
     name="model_data",
 )
-def log_model(context, keras_dot_product_model: Model) -> Dict:
+def log_model(context, keras_dot_product: Model) -> Dict:
     """ """
-    mlflow = context.resources.mlflow
+    _mlflow = context.resources.mlflow
 
-    logged_model = mlflow.tensorflow.log_model(
-        keras_dot_product_model,
-        "keras_dot_product_model",
-        registered_model_name="keras_dot_product_model",
+    logged_model = _mlflow.tensorflow.log_model(
+        keras_dot_product,
+        "keras_dot_product",
+        registered_model_name="keras_dot_product",
         input_example=[np.array([1, 2]), np.array([2, 3])],
     )
 
@@ -169,14 +173,14 @@ def log_model(context, keras_dot_product_model: Model) -> Dict:
 def evaluate_model(context, model_data, x_test, y_test) -> None:
     """ """
 
-    mlflow = context.resources.mlflow
+    _mlflow = context.resources.mlflow
 
     logged_model = model_data["model_uri"]
 
-    loaded_model = mlflow.pyfunc.load_model(logged_model)
+    loaded_model = _mlflow.pyfunc.load_model(logged_model)
 
     y_pred = loaded_model.predict([x_test.encoded_user_id, x_test.encoded_movie_id])
 
     mse = mean_squared_error(y_pred.reshape(-1), y_test.rating.values)
 
-    mlflow.log_metrics({"test_mse": mse, "test_rmse": mse ** (0.5)})
+    _mlflow.log_metrics({"test_mse": mse, "test_rmse": mse ** (0.5)})

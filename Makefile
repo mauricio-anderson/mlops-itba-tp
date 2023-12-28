@@ -25,9 +25,3 @@ run-isort:
 
 run-pylint:
 	poetry run pylint mlops_itba_tp/*
-
-run-flake8:
-	poetry run flake8 mlops_itba_tp/*
-
-run-mypy:
-	poetry run mypy mlops_itba_tp/*

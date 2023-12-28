@@ -14,7 +14,8 @@ disable=
     logging-fstring-interpolation,
     fixme,
     broad-except,
-    unspecified-encoding
+    unspecified-encoding,
+    import-error
 
 
 [BASIC]
