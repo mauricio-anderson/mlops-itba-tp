@@ -16,7 +16,7 @@ from mlops_itba_tp.recommender_system.assets.recommenderer.model_helper import g
 
 mlflow = mlflow_tracking.configured(
     {
-        "experiment_name": "recommender-system-I",
+        "experiment_name": "recommender-system-II",
         "mlflow_tracking_uri": os.environ.get(
             "MLFLOW_TRACKING_URI", "http://127.0.0.1:8887"
         ),
@@ -146,7 +146,7 @@ def keras_dot_product_model(
     },
     name="model_data",
 )
-def log_model(context, keras_dot_product_model: Model) -> Dict:
+def log_model(context, keras_dot_product_model: Model) -> Dict:  # pylint: disable=redefined-outer-name
     """ """
     _mlflow = context.resources.mlflow
 

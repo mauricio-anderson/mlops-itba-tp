@@ -1,10 +1,12 @@
 """ """
+import os
+
 import pandas as pd
 import sqlalchemy as sa
 
-postgres_conn = {  # TODO: get password from EnvVar("POSTGRES_PASSWORD")
-    "username": "postgres",
-    "password": "postgres",
+postgres_conn = {
+    "username": os.getenv("POSTGRES_USER"),
+    "password": os.getenv("POSTGRES_PASSWORD"),
     "host": "localhost",
     "port": 5433,
     "database": "mlops",

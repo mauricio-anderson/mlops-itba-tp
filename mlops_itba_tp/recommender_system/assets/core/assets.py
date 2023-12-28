@@ -1,11 +1,14 @@
 """ """
+from pathlib import Path
+
 import pandas as pd
 from dagster_dbt import DbtCliResource, dbt_assets
-from dagster import Output, AssetIn, MetadataValue, AssetExecutionContext, asset
+from dagster import Output, MetadataValue, AssetExecutionContext, asset
 
 from mlops_itba_tp.utils.data import run_query
 
-dbt_manifest_path = "/Users/mauricio.anderson/proyectos/mlops-itba-tp/dbt_project/target/manifest.json"  # TODO: replace for relative path
+project_dir = Path(__file__).joinpath("..", "..", "..", "..", "..").resolve()
+dbt_manifest_path = str(Path(project_dir)) + "/dbt_project/target/manifest.json"
 
 
 @dbt_assets(manifest=dbt_manifest_path)
@@ -14,7 +17,6 @@ def rec_dbt_assets(context: AssetExecutionContext, dbt: DbtCliResource):
 
 
 @asset(
-    # ins={"table_to_model": AssetIn()},
     deps=["table_to_model"],
     compute_kind="python",
 )
